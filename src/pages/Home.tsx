@@ -14,7 +14,7 @@ export default function Home() {
                 setRecipes(data.results || []);
                 setLoading(false);
             })
-            .catch(err => {
+            .catch(() => {
                 setError('Failed to load recipes. Check API key or internet.');
                 setLoading(false);
             });

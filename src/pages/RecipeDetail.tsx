@@ -46,7 +46,7 @@ export default function RecipeDetail() {
         };
 
         try {
-            const response = await addFavorite(favoriteData);
+            await addFavorite(favoriteData);
             setIsFavorite(true);
             alert('✅ Added to My Cookbook!');
         } catch (err) {
