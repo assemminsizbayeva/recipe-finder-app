@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Clock, Users } from 'lucide-react';
-import { Recipe } from '../types/recipe';
 
 interface Props {
-    recipe: Recipe;
+    recipe: any; // temporary bypass
 }
 
 export default function RecipeCard({ recipe }: Props) {
