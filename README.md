@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# Recipe Finder & Personal Cookbook 🍳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive single-page React application that lets users discover recipes using real-time data, view detailed information, and manage a personal cookbook with full CRUD operations.
 
-Currently, two official plugins are available:
+## Live Demo
+🔗 **https://recipe-finder-app-pied-three.vercel.app/**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- **Home Page**: Displays popular/trending recipes fetched from Spoonacular API
+- **Search**: Keyword-based recipe search with real results and images
+- **Recipe Details**: Full view with image, prep time, servings, ingredients list, and step-by-step instructions
+- **Personal Cookbook**: 
+  - Add recipes to favorites (POST)
+  - View saved recipes with images
+  - Remove recipes (DELETE)
+  - Prevents duplicates
+  - Clicking saved recipe opens correct details and shows "Already added"
+- Loading spinners and user-friendly error messages
+- Fully responsive design (mobile, tablet, desktop)
+- Clean navigation bar with active state highlighting
 
-## React Compiler
+## APIs Used
+- **Spoonacular Food API** – Live recipe data (search, details, images, instructions)  
+  Documentation: https://spoonacular.com/food-api
+  - Note: Free tier has ~50-150 points/day limit (resets daily). During heavy testing, quota may be temporarily exhausted — app shows friendly error.
+- **MockAPI.io** – Persistent mock backend for favorites CRUD (no real backend needed)  
+  Link: https://mockapi.io
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
+- React + TypeScript
+- Vite (fast build tool)
+- Tailwind CSS (styling & responsiveness)
+- Axios (API requests)
+- React Router (multi-page navigation)
+- Lucide React (icons)
 
-## Expanding the ESLint configuration
+## Project Structure
+src/
+├── components/     # Reusable UI (Navbar, RecipeCard, LoadingSpinner)
+├── pages/          # Home, Search, RecipeDetail, Cookbook
+├── services/       # api.ts – all API logic separated
+├── types/          # TypeScript interfaces
+├── config.ts       # API base URLs and key (no hard-coding)
+└── main.tsx        # Routing setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## How to Run Locally
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/assemminsizbayeva/recipe-finder-app.git
+2. Install dependencies:Bashnpm install
+(Optional) Add your own Spoonacular API key in src/config.ts for more daily calls
+3. Start dev server:Bashnpm run dev
+Open http://localhost:5173
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##Known Limitations
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Spoonacular free tier daily quota (resets every 24 hours)
+No user authentication — cookbook is global via MockAPI (sufficient for capstone demo)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Capstone Requirements Met
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Consumes existing REST APIs (GET list/details + full CRUD on favorites)
+Loading & error states implemented
+Responsive layout with Flexbox/Grid
+Clean code architecture, modern ES6+, separation of concerns
+Git used with meaningful commits
+Deployed live on Vercel
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Created for Front-End Capstone Project
+Thank you for reviewing! 🙌
